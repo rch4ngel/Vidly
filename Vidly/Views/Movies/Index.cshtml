@@ -1,0 +1,33 @@
+﻿@model Vidly.ViewModels.MoviesViewModel
+@{
+    ViewBag.Title = "Movies";
+}
+
+<h2>Movies</h2>
+
+@if (Model.Movies.Any())
+{
+    <table id="movies" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Movie</th>
+            </tr>
+        </thead>
+        @foreach (var movie in Model.Movies)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(movie.Name, "Edit", "Movies", new { id = movie.Id }, null) 
+                    @Html.ActionLink(" ", "Delete", new { id = movie.Id }, new { @class = "btn glyphicon glyphicon-trash pull-right" })  
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>Sorry there are no movies yet.</p>
+}
+
+@Html.ActionLink("Create", "New", null, new { @class = "btn btn-primary"})
+

@@ -1,0 +1,31 @@
+﻿@model Vidly.ViewModels.CustomersViewModel
+@{
+    ViewBag.Title = "Customers";
+}
+
+<h2>Customers</h2>
+
+@if (Model.Customers.Any())
+{
+    <table id="customers" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Membership Type</th>
+            </tr>
+        </thead>
+        @foreach (var customer in Model.Customers)
+        {
+            <tr> 
+                <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
+                <td>@customer.MembershipType.Name</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>Sorry there are no customers yet.</p>
+}
+
+@Html.ActionLink("Create", "New", null, new { @class = "btn btn-primary"})

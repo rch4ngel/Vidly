@@ -13,6 +13,10 @@ namespace Vidly
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // Custome routes must be declared before the default route.
+            routes.MapMvcAttributeRoutes();
+            
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
